@@ -2,37 +2,42 @@ package prob6;
 
 import java.util.Scanner;
 
-import org.omg.CosNaming.NamingContextExtPackage.AddressHelper;
-
 public class CalcApp {
 
 	public static void main(String[] args) {
 		Scanner scanner = new Scanner(System.in);
-		Calc calc = new Calc();
+		Add add = new Add();
+		Sub sub = new Sub();
+		Mul mul = new Mul();
+		Div div = new Div();
 		while (true) {
 			System.out.print(">> ");
 			String expression = scanner.nextLine();
+
+			if (expression.equals("exit"))
+				break;
 			String[] tokens = expression.split(" ");
 			int left_num = Integer.parseInt(tokens[0]);
 			int right_num = Integer.parseInt(tokens[2]);
+
 			switch (tokens[1]) {
 			case "+":
-				System.out.println(">> " + calc.add(left_num, right_num));
+				add.setValue(left_num, right_num);
+				System.out.println(">> " + add.calculate());
 				break;
 			case "-":
-				System.out.println(">> " + calc.sub(left_num, right_num));
+				sub.setValue(left_num, right_num);
+				System.out.println(">> " + sub.calculate());
 				break;
 			case "*":
-				System.out.println(">> " + calc.mul(left_num, right_num));
+				mul.setValue(left_num, right_num);
+				System.out.println(">> " + mul.calculate());
 				break;
 			case "/":
-				System.out.println(">> " + calc.div(left_num, right_num));
-				break;
-			}
-			if (tokens[0].equals("exit")) {
+				div.setValue(left_num, right_num);
+				System.out.println(">> " + div.calculate());
 				break;
 			}
 		}
 	}
-
 }
